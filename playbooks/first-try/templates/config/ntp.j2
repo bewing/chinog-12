@@ -1,0 +1,6 @@
+{% for h in to_add %}
+ntp server {{ h }}
+{% endfor %}
+{% for h in to_delete %}
+no ntp server {{ h }}
+{% endfor %}

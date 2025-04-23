@@ -1,0 +1,4 @@
+Value Required Host (\S+)
+
+Start
+  ^ntp server $Host -> Record

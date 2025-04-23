@@ -2,5 +2,6 @@
 slides/dist
 slides/pdf
 bin/
-lab/clab*/
-lab/.*.bak
+clab*/
+*.clab.yml.bak
+
