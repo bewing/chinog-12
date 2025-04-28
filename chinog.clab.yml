@@ -4,6 +4,7 @@ topology:
     ceos:
       kind: ceos
       image: ceos64:4.33.2F
+      startup-config: ceos-config.cfg
     iol:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.01

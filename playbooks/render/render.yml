@@ -1,0 +1,24 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+  - name: Gather NTP config
+    cisco.ios.ntp_global:
+      state: rendered
+      config:
+        authenticate: true
+        authentication_keys:
+        - algorithm: md5
+          id: 2
+          key: supersecret
+          encryption: 7
+        servers:
+        - server: 1.2.3.4
+          version: 2
+          prefer: true
+          key: 2
+        - server: 4.3.2.1
+          version: 2
+          key: 2
+    register: output
+  - ansible.builtin.debug:
+      var:  output

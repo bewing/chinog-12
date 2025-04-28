@@ -1,0 +1,10 @@
+- hosts: all
+  module_defaults:
+    ansible.builtin.gather_facts:
+      gather_subset:
+      - interfaces
+      gather_network_resources:
+      - ntp_global
+  tasks:
+  - ansible.builtin.debug:
+      var: ansible_facts

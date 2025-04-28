@@ -1,0 +1,13 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+  - cisco.ios.ios_facts:
+      gather_subset:
+      - interfaces
+      gather_network_resources:
+      - ntp_global
+  - ansible.builtin.debug:
+      var: ansible_facts.keys()
+  - ansible.builtin.debug:
+      var: ansible_facts.network_resources.keys()
+    
