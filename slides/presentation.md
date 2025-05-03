@@ -1043,9 +1043,54 @@ clab-chinog-ceos           : ok=2    changed=1    unreachable=0    failed=0    s
 clab-chinog-iol            : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 ---
-Gotchas
+<div class="my-header"><h1>Interoperability</h1></div>
+<br />
+<br />
+
+.huge[.green[That works great!]]
+<br />
+<br />
+
+.huge[.red[but...]]
 
 ---
+<div class="my-header"><h1>argspec</h1></div>
+<br />
+<br />
+<br />
+Arguments passed to the module.
+
+* the **state** directive
+
+  * Controls module behavior
+
+* **config** dictionary contains the model for this module
+
+  * .red[.strong[*similar* between OS/collections but NOT IDENTICAL]]
+
+---
+<div class="my-header"><h1>Interoperability</h1></div>
+<br />
+<br />
+
+.strong[arista.eos.ntp_global]
+
+.image-80[![placeholder](assets/arista-ntp-local-interface.png)]
+<br />
+<br />
+.strong[arista.eos.ntp_global]
+.image-80[![placeholder](assets/cisco-ntp-source.png)]
+
+---
+<div class="my-header"><h1>Interoperability</h1></div>
+<br />
+<br />
+
+.image-80[![placeholder](assets/jackie-chan-why.webp)]
+
+
+---
+
 Decoding errors
 
 ---

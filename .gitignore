@@ -4,4 +4,7 @@ slides/pdf
 bin/
 clab*/
 *.clab.yml.bak
-
+outputs/
+node_modules/
+package-lock.json
+package.json
