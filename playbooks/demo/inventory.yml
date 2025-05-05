@@ -1,0 +1,70 @@
+network:
+  vars:
+    ansible_user: admin
+    ansible_password: admin
+    nm_configs: {}
+    nm_states:
+      system: overridden
+      ntp_global: overridden
+      snmp_server: overridden
+      logging_global: overridden
+      lldp_global: overridden
+  hosts:
+    clab-chinog-ceos:
+      ansible_network_os: arista.eos.eos
+      ansible_connection: ansible.netcommon.httpapi
+      ansible_httpapi_use_ssl: yes
+      ansible_httpapi_validate_certs: no
+      nm_configs:
+        ntp_global:
+          local_interface: Ethernet1
+          authentication_keys:
+          - algorithm: md5
+            encryption: 7
+            id: 2
+            key: "0832595E0C0B161211190910"
+          servers:
+          - server: 1.2.3.4
+            key_id: 2
+          - server: 4.3.2.1
+            key_id: 2
+        snmp_server:
+          contact: support@example.com
+          location: 123 Demo Way
+          communities:
+          - name: public
+            ro: true
+          - name: private
+            rw: true
+        logging_global:
+          hosts:
+          - name: 1.2.3.4
+    clab-chinog-iol:
+      ansible_network_os: cisco.ios.ios
+      ansible_connection: ansible.netcommon.network_cli
+      nm_configs:
+        ntp_global:
+          source: Ethernet0/0
+          authentication_keys:
+          - algorithm: md5
+            encryption: 7
+            id: 2
+            key: "0832595E0C0B161211190910"
+          servers:
+          - server: 1.2.3.4
+            key_id: 2
+          - server: 4.3.2.1
+            key_id: 2
+        snmp_server:
+          contact: support@example.com
+          location: 123 Demo Way
+          communities:
+          - name: public
+            ro: true
+          - name: private
+            rw: true
+        logging_global:
+          hosts:
+          - host: 1.2.3.4
+        lldp_global:
+          enabled: true

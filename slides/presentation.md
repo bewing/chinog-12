@@ -218,7 +218,6 @@ PLAY RECAP *********************************************************************
 clab-chinog-iol            : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
-
 --
 
 <br />
@@ -1078,7 +1077,7 @@ Arguments passed to the module.
 .image-80[![placeholder](assets/arista-ntp-local-interface.png)]
 <br />
 <br />
-.strong[arista.eos.ntp_global]
+.strong[cisco.ios.ntp_global]
 .image-80[![placeholder](assets/cisco-ntp-source.png)]
 
 ---
@@ -1090,11 +1089,111 @@ Arguments passed to the module.
 
 
 ---
+<div class="my-header"><h1>Interoperability</h1></div>
+<br />
+<br />
 
-Decoding errors
+.big[
+```yaml
+- name: Configure Cisco NTP
+  when: ansible_network_os == "cisco.ios.ios"
+  ansible.netcommon.network_resource:
+    name: ntp_global
+    config:
+      local_interface: Loopback0
+...
+- name: Configure Arista NTP
+  when: ansible_network_os == "arista.eos.eos"
+  ansible.netcommon.network_resource:
+    name: ntp_global
+    config:
+      source: Loopback0
+
+```
+]
 
 ---
+<div class="my-header"><h1>Interoperability</h1></div>
+<br />
+<br />
 
-Variables
+.biggish[
+```yaml
+- hosts: all
+  gather_facts: false
+  tasks:
+  - name: Configure NTP
+    ansible.builtin.include_tasks: "{{ item }}"
+    with_first_found:
+    - "tasks/{{ ansible_network_os }}.yml"
+    - "tasks/unsupported_os.yml"
+```
+
+```yaml
+# tasks/arista.eos.eos.yml
+- name: Configure NTP
+  ansible.netcommon.network_resource:
+    name: ntp_global
+    state: overridden
+    config:
+      servers:
+      - server: 1.2.3.4
+      - server: 4.3.2.1
+      local_interface: Ethernet1
+```
+]
 
 ---
+<div class="my-header"><h1>Interoperability</h1></div>
+<br />
+<br />
+
+.strong[HostVars]
+
+.biggish[
+```yaml
+network:
+  hosts:
+    clab-chinog-ceos:
+      ntp_config:
+        local_interface: Ethernet1
+        servers:
+        - server: 1.2.3.4
+          server: 4.3.2.1
+```
+
+```yaml
+tasks:
+- name: Push NTP config
+  ansible.netcommon.network_resource
+    name: ntp_global
+    state: overridden
+    config: "{{ ntp_config }}""
+
+```
+]
+
+---
+<div class="my-header"><h1>Errata</h1></div>
+<br />
+<br />
+
+* Resource modules commit, but do not save!
+* Define handlers in your plays to write startup-config if device has one
+
+```yaml
+handlers:
+- name: Save IOS config
+  listen: Save config
+  when: not ansible_check_mode and ansible_network_os == "cisco.ios.ios"
+  ansible.netcommon.cli_command:
+     command: copy running-config startup-config
+     prompt: Destination
+     answer: '\r'
+
+```
+
+---
+<div class="my-header"><h1>Demo</h1></div>
+<br />
+<br />

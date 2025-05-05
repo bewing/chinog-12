@@ -1,0 +1,42 @@
+- hosts: all
+  gather_facts: true
+  module_defaults:
+    ansible.builtin.gather_facts:
+      gather_network_resources: "{{ nm_configs.keys() }}"
+
+  tasks:
+  - name: Print gathered facts
+    ansible.builtin.debug:
+      var: ansible_facts
+  - name: Configure system NRMs
+    notify: Save config
+    ansible.netcommon.network_resource:
+      name: system
+      state: present
+      hostname: "{{ inventory_hostname_short }}"
+      domain_name: example.com
+      name_servers:
+      - 8.8.8.8
+      - 8.8.4.5
+  - name: Configure NRMs
+    loop: "{{ nm_configs.keys() }}"
+    notify: Save config
+    ansible.netcommon.network_resource:
+      name: "{{ item }}"
+      state: "{{ nm_states[item] }}"
+      config: "{{ nm_configs[item] }}"
+
+  handlers:
+  - name: Save IOS config
+    when: not ansible_check_mode and ansible_network_os == "cisco.ios.ios"
+    listen: Save config
+    ansible.netcommon.cli_command:
+     command: copy running-config startup-config
+     prompt: Destination
+     answer: "\r"
+
+  - name: Save EOS config
+    when: not ansible_check_mode and ansible_network_os == "arista.eos.eos"
+    listen: Save config
+    arista.eos.eos_command: # cli_command not supported via httpapi
+      commands: copy running-config startup-config
