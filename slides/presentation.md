@@ -71,6 +71,7 @@ network:
 <div class="my-header"><h1>Take One</h1></div>
 <br />
 
+.biggish[
 ```yaml
 - hosts: all
   gather_facts: false
@@ -82,6 +83,7 @@ network:
       - ntp server 1.2.3.4
       - ntp server 4.3.2.1
 ```
+]
 
 --
 
@@ -152,6 +154,7 @@ class: middle,inverse
 <div class="my-header"><h1>Take Two</h1></div>
 <br />
 
+.biggish[
 ```yaml
 - hosts: all
   gather_facts: no
@@ -175,6 +178,7 @@ class: middle,inverse
     ios_config:
       src: "templates/config/ntp.j2"
 ```
+]
 
 ---
 <div class="my-header"><h1>Take Two</h1></div>
@@ -478,7 +482,7 @@ Ansible Network Modules contain:
 * An *argspec* covering the model of the config (usually the **want** part)
 * A *facts* module that handles populating the **have** argspec from the device
 * A *config* module that can compare want/have and generate a list of commands
-* For CLI devices, an *rm_templates* module that handles parsing and configuration generation
+* For CLI devices, an *rm_templates* module that handles parsing and assists with configuration generation
 ]
 
 ---
@@ -523,10 +527,15 @@ Arguments passed to the module.
 <h2>state: merged</h2>
 .col-9[
 * Usually the safest
+
 * Will ADD your config to the existing config
+
 * and keep what is already present
+
 * Will merge down into individual ACL entries
+
 * So if you have seq 10 20 30, and merge in 15 and 20
+
   * 15 is added
   * 20 is replaced
 ]
@@ -545,13 +554,13 @@ Arguments passed to the module.
 <br />
 
 <h2>state: replaced</h2>
-.col-9[Replace a subsection (usually) of the config on the device
+.col-9[Replace a subsection (usually) of the config section on the device
 <br />
 
 * Used to replace the configured subsection with the provided config
 
 * Differs per module
- * NTP will behave like overidden
+ * NTP will behave like `overidden`
  * But ACL may only replace a single ACL
 
 * Please read the docs and perform testing when using this in plays/roles
@@ -609,6 +618,7 @@ Override the entire section on the device
 ]
 
 ---
+class: inverse
 <div class="my-header"><h1>argspec</h1></div>
 <br />
 <br />
@@ -885,74 +895,6 @@ ok: [clab-chinog-iol] =>
 ```
 
 ---
-<div class="my-header"><h1>facts</h1></div>
-<br />
-<br />
-
-## Going further
-
-Since gathering is a task, you can call it in roles, conditionally
-
-```yaml
-- hosts: all
-  gather_facts: false
-  tasks:
-  - name: Gather l3 info (unconditionally)
-    ansible.builtin.gather_facts:
-      gather_subset:
-      - "!all"
-      gather_network_resources:
-      - l3_interfaces
-  - ansible.builtin.debug:
-      var: ansible_facts
-  - name: Gather l3 info (conditionally)
-    when: not ansible_facts or "l3_interfaces" not in ansible_facts.network_resources
-    ansible.builtin.gather_facts:
-      gather_subset:
-      - "!all"
-      gather_network_resources:
-      - l3_interfaces
-
-```
-
----
-<div class="my-header"><h1>facts</h1></div>
-<br />
-<br />
-
-```terminal
-$ ansible-playbook -i inventory.yml playbooks/facts-adhoc/facts-adhoc.yml -l clab-chinog-iol
-
-PLAY [all] *******************************************************************
-
-TASK [Gather l3 info] ********************************************************
-ok: [clab-chinog-iol]
-
-TASK [ansible.builtin.debug] *************************************************
-ok: [clab-chinog-iol] =>
-    ansible_facts:
-    ... snip
-        network_resources:
-            l3_interfaces:
-            -   ipv4:
-                -   address: 172.20.20.3/24
-                ipv6:
-                -   address: 3FFF:172:20:20::3/64
-                name: Ethernet0/0
-            -   name: Ethernet0/1
-            -   name: Ethernet0/2
-            -   name: Ethernet0/3
-
-TASK [Gather l3 info] ********************************************************
-skipping: [clab-chinog-iol]
-
-PLAY RECAP *******************************************************************
-clab-chinog-iol            : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-```
-
-The skip is *marginally* faster than the fact cache check
-
----
 class: inverse
 <div class="my-header"><h1>.red[Problems]</h1></div>
 <br />
@@ -1117,37 +1059,6 @@ Arguments passed to the module.
 <br />
 <br />
 
-.biggish[
-```yaml
-- hosts: all
-  gather_facts: false
-  tasks:
-  - name: Configure NTP
-    ansible.builtin.include_tasks: "{{ item }}"
-    with_first_found:
-    - "tasks/{{ ansible_network_os }}.yml"
-    - "tasks/unsupported_os.yml"
-```
-
-```yaml
-# tasks/arista.eos.eos.yml
-- name: Configure NTP
-  ansible.netcommon.network_resource:
-    name: ntp_global
-    state: overridden
-    config:
-      servers:
-      - server: 1.2.3.4
-      - server: 4.3.2.1
-      local_interface: Ethernet1
-```
-]
-
----
-<div class="my-header"><h1>Interoperability</h1></div>
-<br />
-<br />
-
 .strong[HostVars]
 
 .biggish[
@@ -1174,11 +1085,12 @@ tasks:
 ]
 
 ---
-<div class="my-header"><h1>Errata</h1></div>
+<div class="my-header"><h1>Interoperability</h1></div>
 <br />
 <br />
 
 * Resource modules commit, but do not save!
+
 * Define handlers in your plays to write startup-config if device has one
 
 ```yaml
@@ -1190,6 +1102,13 @@ handlers:
      command: copy running-config startup-config
      prompt: Destination
      answer: '\r'
+
+- name: Save EOS config
+  listen: Save config
+  when: not ansible_check_mode and ansible_network_os == "arista.eos.eos"
+  arista.eos.eos_command: # cli_command doesn't support httpapi
+    commands:
+    - copy running-config startup-config
 
 ```
 
