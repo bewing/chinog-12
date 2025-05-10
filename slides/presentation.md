@@ -2,7 +2,7 @@ class: center, middle
 
 <div class="my-header"><img src="assets/imc-logo.png" style="float: left; width:250px"></div>
 
-.image-40[![placeholder](assets/ansible-puzzle-router.png)]
+.image-30[![placeholder](assets/ansible-puzzle-router.png)]
 # Agnostic automation with Network Resource Modules
 Brandon Ewing<br />
 CHI-NOG 12, May 2025<br />
@@ -13,21 +13,8 @@ CHI-NOG 12, May 2025<br />
 * intro self
 
 ---
-<div class="my-header"><h1>Primer</h1></div>
-<br />
-<br />
-.biggish[
-* What is Ansible
-
-  * Inventory
-  * Plays
-  * Tasks
-  * Modules
-  * Collections
-  * Ansible Galaxy
-
-* Why Ansible
-]
+class: center
+.image-70[![placeholder](assets/introvert.png)]
 
 ---
 class: middle, inverse
@@ -37,9 +24,9 @@ class: middle, inverse
 .big[
 * Brownfield Network
 
-* Multiple Vendors
-
 * No automated config management
+
+* Multiple Vendors
 
 * Desire to start partial config control
 
@@ -329,13 +316,15 @@ route-map {{ route_map }} {{ term['action'] }} {{ index }}
 
 ---
 class: inverse
-<div class="my-header"><h1>Ansible Network Modules</h1></div>
+<div class="my-header"><h1>Complexity</h1></div>
 <br />
 .big[
 * Who's going to write all that code?!?!
+
   * Configuration modeling
-  * Complex interaction
+
   * CLI parsers
+
   * REST/RPC support?!?!
 ]
 --
@@ -352,10 +341,14 @@ class: inverse
 class: middle
 <div class="my-header"><h1>Ansible Network Modules</h1></div>
 .biggish[
+
 * A set of vendor-specific Galaxy collections
+
 * Written and supported by the Red Hat Ansible Network Team
   * with full documentation!
+
 * Provide the networking framework
+
 * Handles device fact collection (natively!) and config *section* management
 
 ]
@@ -918,6 +911,8 @@ clab-chinog-iol            : ok=3    changed=0    unreachable=0    failed=0    s
 <div class="my-header"><h1>Interoperability</h1></div>
 <br />
 <br />
+<br />
+<br />
 
 ```yaml
 - hosts: all
@@ -996,6 +991,7 @@ clab-chinog-iol            : ok=2    changed=0    unreachable=0    failed=0    s
 
 ---
 <div class="my-header"><h1>argspec</h1></div>
+<br />
 <br />
 <br />
 <br />
