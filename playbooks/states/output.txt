@@ -2,359 +2,358 @@
 PLAY [clab-chinog-iol] *********************************************************
 
 TASK [Delete all ACLs] *********************************************************
-[0;33mchanged: [clab-chinog-iol][0m
+[0;33mchanged: [clab-chinog-iol]</span>
 
 TASK [Configure 2 ACLs] ********************************************************
-[0;33mchanged: [clab-chinog-iol][0m
+[0;33mchanged: [clab-chinog-iol]</span>
 
 TASK [ansible.builtin.debug] ***************************************************
-[0;32mok: [clab-chinog-iol] => [0m
-[0;32m    mod_output:[0m
-[0;32m        after:[0m
-[0;32m        -   acls:[0m
-[0;32m            -   aces:[0m
-[0;32m                -   grant: permit[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                -   grant: deny[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: standard[0m
-[0;32m                name: test_acl1[0m
-[0;32m            -   aces:[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '22'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 30[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: extended[0m
-[0;32m                name: test_acl2[0m
-[0;32m            afi: ipv4[0m
-[0;32m        ansible_connection: ansible.netcommon.network_cli[0m
-[0;32m        ansible_network_os: cisco.ios.ios[0m
-[0;32m        before: {}[0m
-[0;32m        changed: true[0m
-[0;32m        commands:[0m
-[0;32m        - ip access-list standard test_acl1[0m
-[0;32m        - 10 permit 192.0.2.0 0.0.0.255[0m
-[0;32m        - 20 deny any[0m
-[0;32m        - ip access-list extended test_acl2[0m
-[0;32m        - 10 permit tcp any 192.0.2.0 0.0.0.255 eq 22[0m
-[0;32m        - 30 permit tcp any 192.0.2.0 0.0.0.255 eq 443[0m
-[0;32m        failed: false[0m
-[0;32m        resource_module_name: cisco.ios.acls[0m
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    mod_output:</span>
+<span style="color:green;">        after:</span>
+<span style="color:green;">        -   acls:</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   grant: permit</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                -   grant: deny</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: standard</span>
+<span style="color:green;">                name: test_acl1</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '22'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 30</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: extended</span>
+<span style="color:green;">                name: test_acl2</span>
+<span style="color:green;">            afi: ipv4</span>
+<span style="color:green;">        ansible_connection: ansible.netcommon.network_cli</span>
+<span style="color:green;">        ansible_network_os: cisco.ios.ios</span>
+<span style="color:green;">        before: {}</span>
+<span style="color:green;">        changed: true</span>
+<span style="color:green;">        commands:</span>
+<span style="color:green;">        - ip access-list standard test_acl1</span>
+<span style="color:green;">        - 10 permit 192.0.2.0 0.0.0.255</span>
+<span style="color:green;">        - 20 deny any</span>
+<span style="color:green;">        - ip access-list extended test_acl2</span>
+<span style="color:green;">        - 10 permit tcp any 192.0.2.0 0.0.0.255 eq 22</span>
+<span style="color:green;">        - 30 permit tcp any 192.0.2.0 0.0.0.255 eq 443</span>
+<span style="color:green;">        failed: false</span>
+<span style="color:green;">        resource_module_name: cisco.ios.acls</span>
 
 TASK [Add ACE to test_acl2] ****************************************************
-[0;33mchanged: [clab-chinog-iol][0m
+[0;33mchanged: [clab-chinog-iol]</span>
 
 TASK [ansible.builtin.debug] ***************************************************
-[0;32mok: [clab-chinog-iol] => [0m
-[0;32m    mod_output:[0m
-[0;32m        after:[0m
-[0;32m        -   acls:[0m
-[0;32m            -   aces:[0m
-[0;32m                -   grant: permit[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                -   grant: deny[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: standard[0m
-[0;32m                name: test_acl1[0m
-[0;32m            -   aces:[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '22'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: deny[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        address: 100.64.0.0[0m
-[0;32m                        wildcard_bits: 0.63.255.255[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 30[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: extended[0m
-[0;32m                name: test_acl2[0m
-[0;32m            afi: ipv4[0m
-[0;32m        ansible_connection: ansible.netcommon.network_cli[0m
-[0;32m        ansible_network_os: cisco.ios.ios[0m
-[0;32m        before:[0m
-[0;32m        -   acls:[0m
-[0;32m            -   aces:[0m
-[0;32m                -   grant: permit[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                -   grant: deny[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: standard[0m
-[0;32m                name: test_acl1[0m
-[0;32m            -   aces:[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '22'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 30[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: extended[0m
-[0;32m                name: test_acl2[0m
-[0;32m            afi: ipv4[0m
-[0;32m        changed: true[0m
-[0;32m        commands:[0m
-[0;32m        - ip access-list extended test_acl2[0m
-[0;32m        - 20 deny tcp 100.64.0.0 0.63.255.255 192.0.2.0 0.0.0.255 eq 443[0m
-[0;32m        failed: false[0m
-[0;32m        resource_module_name: cisco.ios.acls[0m
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    mod_output:</span>
+<span style="color:green;">        after:</span>
+<span style="color:green;">        -   acls:</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   grant: permit</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                -   grant: deny</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: standard</span>
+<span style="color:green;">                name: test_acl1</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '22'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: deny</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        address: 100.64.0.0</span>
+<span style="color:green;">                        wildcard_bits: 0.63.255.255</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 30</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: extended</span>
+<span style="color:green;">                name: test_acl2</span>
+<span style="color:green;">            afi: ipv4</span>
+<span style="color:green;">        ansible_connection: ansible.netcommon.network_cli</span>
+<span style="color:green;">        ansible_network_os: cisco.ios.ios</span>
+<span style="color:green;">        before:</span>
+<span style="color:green;">        -   acls:</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   grant: permit</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                -   grant: deny</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: standard</span>
+<span style="color:green;">                name: test_acl1</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '22'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 30</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: extended</span>
+<span style="color:green;">                name: test_acl2</span>
+<span style="color:green;">            afi: ipv4</span>
+<span style="color:green;">        changed: true</span>
+<span style="color:green;">        commands:</span>
+<span style="color:green;">        - ip access-list extended test_acl2</span>
+<span style="color:green;">        - 20 deny tcp 100.64.0.0 0.63.255.255 192.0.2.0 0.0.0.255 eq 443</span>
+<span style="color:green;">        failed: false</span>
+<span style="color:green;">        resource_module_name: cisco.ios.acls</span>
 
 TASK [Replace test_acl1] *******************************************************
-[0;33mchanged: [clab-chinog-iol][0m
+[0;33mchanged: [clab-chinog-iol]</span>
 
 TASK [ansible.builtin.debug] ***************************************************
-[0;32mok: [clab-chinog-iol] => [0m
-[0;32m    mod_output:[0m
-[0;32m        after:[0m
-[0;32m        -   acls:[0m
-[0;32m            -   aces:[0m
-[0;32m                -   grant: permit[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        host: 192.0.2.1[0m
-[0;32m                -   grant: deny[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: standard[0m
-[0;32m                name: test_acl1[0m
-[0;32m            -   aces:[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '22'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: deny[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        address: 100.64.0.0[0m
-[0;32m                        wildcard_bits: 0.63.255.255[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 30[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: extended[0m
-[0;32m                name: test_acl2[0m
-[0;32m            afi: ipv4[0m
-[0;32m        ansible_connection: ansible.netcommon.network_cli[0m
-[0;32m        ansible_network_os: cisco.ios.ios[0m
-[0;32m        before:[0m
-[0;32m        -   acls:[0m
-[0;32m            -   aces:[0m
-[0;32m                -   grant: permit[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                -   grant: deny[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: standard[0m
-[0;32m                name: test_acl1[0m
-[0;32m            -   aces:[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '22'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: deny[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        address: 100.64.0.0[0m
-[0;32m                        wildcard_bits: 0.63.255.255[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 30[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: extended[0m
-[0;32m                name: test_acl2[0m
-[0;32m            afi: ipv4[0m
-[0;32m        changed: true[0m
-[0;32m        commands:[0m
-[0;32m        - ip access-list standard test_acl1[0m
-[0;32m        - no 10 permit 192.0.2.0 0.0.0.255[0m
-[0;32m        - 10 permit host 192.0.2.1[0m
-[0;32m        failed: false[0m
-[0;32m        resource_module_name: cisco.ios.acls[0m
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    mod_output:</span>
+<span style="color:green;">        after:</span>
+<span style="color:green;">        -   acls:</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   grant: permit</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        host: 192.0.2.1</span>
+<span style="color:green;">                -   grant: deny</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: standard</span>
+<span style="color:green;">                name: test_acl1</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '22'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: deny</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        address: 100.64.0.0</span>
+<span style="color:green;">                        wildcard_bits: 0.63.255.255</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 30</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: extended</span>
+<span style="color:green;">                name: test_acl2</span>
+<span style="color:green;">            afi: ipv4</span>
+<span style="color:green;">        ansible_connection: ansible.netcommon.network_cli</span>
+<span style="color:green;">        ansible_network_os: cisco.ios.ios</span>
+<span style="color:green;">        before:</span>
+<span style="color:green;">        -   acls:</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   grant: permit</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                -   grant: deny</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: standard</span>
+<span style="color:green;">                name: test_acl1</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '22'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: deny</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        address: 100.64.0.0</span>
+<span style="color:green;">                        wildcard_bits: 0.63.255.255</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 30</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: extended</span>
+<span style="color:green;">                name: test_acl2</span>
+<span style="color:green;">            afi: ipv4</span>
+<span style="color:green;">        changed: true</span>
+<span style="color:green;">        commands:</span>
+<span style="color:green;">        - ip access-list standard test_acl1</span>
+<span style="color:green;">        - no 10 permit 192.0.2.0 0.0.0.255</span>
+<span style="color:green;">        - 10 permit host 192.0.2.1</span>
+<span style="color:green;">        failed: false</span>
+<span style="color:green;">        resource_module_name: cisco.ios.acls</span>
 
 TASK [Replace all ACLs with new ACL] *******************************************
-[0;33mchanged: [clab-chinog-iol][0m
+[0;33mchanged: [clab-chinog-iol]</span>
 
 TASK [ansible.builtin.debug] ***************************************************
-[0;32mok: [clab-chinog-iol] => [0m
-[0;32m    mod_output:[0m
-[0;32m        after:[0m
-[0;32m        -   acls:[0m
-[0;32m            -   aces:[0m
-[0;32m                -   destination:[0m
-[0;32m                        any: true[0m
-[0;32m                    grant: deny[0m
-[0;32m                    protocol: ip[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: extended[0m
-[0;32m                name: test_acl3[0m
-[0;32m            afi: ipv4[0m
-[0;32m        ansible_connection: ansible.netcommon.network_cli[0m
-[0;32m        ansible_network_os: cisco.ios.ios[0m
-[0;32m        before:[0m
-[0;32m        -   acls:[0m
-[0;32m            -   aces:[0m
-[0;32m                -   grant: permit[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        host: 192.0.2.1[0m
-[0;32m                -   grant: deny[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: standard[0m
-[0;32m                name: test_acl1[0m
-[0;32m            -   aces:[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '22'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 10[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: deny[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 20[0m
-[0;32m                    source:[0m
-[0;32m                        address: 100.64.0.0[0m
-[0;32m                        wildcard_bits: 0.63.255.255[0m
-[0;32m                -   destination:[0m
-[0;32m                        address: 192.0.2.0[0m
-[0;32m                        port_protocol:[0m
-[0;32m                            eq: '443'[0m
-[0;32m                        wildcard_bits: 0.0.0.255[0m
-[0;32m                    grant: permit[0m
-[0;32m                    protocol: tcp[0m
-[0;32m                    sequence: 30[0m
-[0;32m                    source:[0m
-[0;32m                        any: true[0m
-[0;32m                acl_type: extended[0m
-[0;32m                name: test_acl2[0m
-[0;32m            afi: ipv4[0m
-[0;32m        changed: true[0m
-[0;32m        commands:[0m
-[0;32m        - ip access-list extended test_acl3[0m
-[0;32m        - 10 deny ip any any[0m
-[0;32m        - no ip access-list standard test_acl1[0m
-[0;32m        - no ip access-list extended test_acl2[0m
-[0;32m        failed: false[0m
-[0;32m        resource_module_name: cisco.ios.acls[0m
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    mod_output:</span>
+<span style="color:green;">        after:</span>
+<span style="color:green;">        -   acls:</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                    grant: deny</span>
+<span style="color:green;">                    protocol: ip</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: extended</span>
+<span style="color:green;">                name: test_acl3</span>
+<span style="color:green;">            afi: ipv4</span>
+<span style="color:green;">        ansible_connection: ansible.netcommon.network_cli</span>
+<span style="color:green;">        ansible_network_os: cisco.ios.ios</span>
+<span style="color:green;">        before:</span>
+<span style="color:green;">        -   acls:</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   grant: permit</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        host: 192.0.2.1</span>
+<span style="color:green;">                -   grant: deny</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: standard</span>
+<span style="color:green;">                name: test_acl1</span>
+<span style="color:green;">            -   aces:</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '22'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 10</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: deny</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 20</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        address: 100.64.0.0</span>
+<span style="color:green;">                        wildcard_bits: 0.63.255.255</span>
+<span style="color:green;">                -   destination:</span>
+<span style="color:green;">                        address: 192.0.2.0</span>
+<span style="color:green;">                        port_protocol:</span>
+<span style="color:green;">                            eq: '443'</span>
+<span style="color:green;">                        wildcard_bits: 0.0.0.255</span>
+<span style="color:green;">                    grant: permit</span>
+<span style="color:green;">                    protocol: tcp</span>
+<span style="color:green;">                    sequence: 30</span>
+<span style="color:green;">                    source:</span>
+<span style="color:green;">                        any: true</span>
+<span style="color:green;">                acl_type: extended</span>
+<span style="color:green;">                name: test_acl2</span>
+<span style="color:green;">            afi: ipv4</span>
+<span style="color:green;">        changed: true</span>
+<span style="color:green;">        commands:</span>
+<span style="color:green;">        - ip access-list extended test_acl3</span>
+<span style="color:green;">        - 10 deny ip any any</span>
+<span style="color:green;">        - no ip access-list standard test_acl1</span>
+<span style="color:green;">        - no ip access-list extended test_acl2</span>
+<span style="color:green;">        failed: false</span>
+<span style="color:green;">        resource_module_name: cisco.ios.acls</span>
 
 PLAY RECAP *********************************************************************
-[0;33mclab-chinog-iol[0m            : [0;32mok=9   [0m [0;33mchanged=5   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-
+[0;33mclab-chinog-iol</span>            : <span style="color:green;">ok=9   </span> [0;33mchanged=5   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
