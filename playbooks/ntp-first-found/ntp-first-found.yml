@@ -1,8 +1,0 @@
-- hosts: all
-  gather_facts: false
-  tasks:
-  - name: Configure NTP
-    ansible.builtin.include_tasks: "{{ item }}"
-    with_first_found:
-    - "tasks/{{ ansible_network_os }}.yml"
-    - "tasks/unsupported_os.yml"

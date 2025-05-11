@@ -1,4 +1,0 @@
-
-- name: Unsupported OS
-  ansible.builtin.debug:
-    msg: "this OS is not supported"

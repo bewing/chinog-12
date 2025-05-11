@@ -1,6 +1,0 @@
-- hosts: all
-  gather_network_resources:
-  - ntp_global
-  tasks:
-  - ansible.builtin.debug:
-      var: ansible_facts

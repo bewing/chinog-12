@@ -79,13 +79,13 @@ network:
 ```terminal
 $ ansible-playbook playbooks/take-one/take-one.yml -i inventory.yml -l clab-chinog-iol
 
-PLAY [all] *******************************************************************
+PLAY [all] *********************************************************************
 
-TASK [Set NTP servers] *******************************************************
-ok: [clab-chinog-iol]
+TASK [Set NTP servers] *********************************************************
+<span style="color:green;">ok: [clab-chinog-iol]</span>
 
-PLAY RECAP *******************************************************************
-clab-chinog-iol            : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *********************************************************************
+<span style="color:green;">clab-chinog-iol</span> : <span style="color:green;">ok=1 </span> changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 ```
 
 .huge[.red[but...]]
@@ -199,19 +199,27 @@ no ntp server {{ h }}
 .huge[.green[That works great!]]
 
 ```terminal
-$ ansible-playbook playbooks/getting-started/getting-started.yml -i inventory.yml --limit clab-chinog-iol
-TASK [Set NTP servers] *************************************************************************************
-[WARNING]: To ensure idempotency and correct diff the input configuration lines should be similar to how
-they appear if present in the running configuration on device including the indentation
-changed: [clab-chinog-iol]
+$ ansible-playbook playbooks/take-two/take-two.yml -i inventory.yml --limit clab-chinog-iol
+TASK [Parse NTP config] ********************************************************
+<span style="color:green;">ok: [clab-chinog-iol]</span>
 
-PLAY RECAP ************************************************************************************************
-clab-chinog-iol            : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+TASK [Debug] *******************************************************************
+<span style="color:green;">ok: [clab-chinog-iol] => {</span>
+<span style="color:green;">    "msg": [</span>
+<span style="color:green;">        "4.3.2.1",</span>
+<span style="color:green;">        "1.2.3.4"</span>
+<span style="color:green;">    ]</span>
+<span style="color:green;">}</span>
+
+TASK [Set NTP servers] *********************************************************
+<span style="color:green;">ok: [clab-chinog-iol]</span>
+
+PLAY RECAP *********************************************************************
+<span style="color:green;">clab-chinog-iol</span>            : <span style="color:green;">ok=3   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 --
 
-<br />
 <br />
 
 .huge[.red[but...]]

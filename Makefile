@@ -1,3 +1,8 @@
+.EXPORT_ALL_VARIABLES:
+
+ANSIBLE_FORCE_COLOR=true
+ANSIBLE_DISPLAY_SKIPPED_HOSTS=false
+
 TEMPLATEFILES=$(wildcard slides/template/*)
 .PHONY: dev-server
 dev-server:

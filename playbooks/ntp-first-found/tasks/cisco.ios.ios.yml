@@ -1,9 +1,0 @@
-- name: Configure NTP
-  ansible.netcommon.network_resource:
-    name: ntp_global
-    state: overridden
-    config:
-      servers:
-      - server: 1.2.3.4
-      - server: 4.3.2.1
-      source: Ethernet0/0
