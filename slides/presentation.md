@@ -388,6 +388,7 @@ class: middle
 
 ---
 <div class="my-header"><h1>Ansible Network Modules</h1></div>
+<br />
 
 ```terminal
 $ ansible-playbook playbooks/ios-ntp/ios-ntp.yml -i inventory.yml -l clab-chinog-iol
@@ -430,6 +431,8 @@ clab-chinog-iol            : ok=2    changed=1    unreachable=0    failed=0    s
 
 ---
 <div class="my-header"><h1>Ansible Network Modules</h1></div>
+<br />
+
 ```terminal
 $ ansible-playbook playbooks/ios-ntp/ios-ntp.yml -i inventory.yml -l clab-chinog-iol
 
@@ -1023,7 +1026,9 @@ Arguments passed to the module.
 <br />
 <br />
 
-.image-80[![placeholder](assets/jackie-chan-why.webp)]
+.image-70[![placeholder](assets/jackie-chan-why.webp)]
+<br />
+[ansible-network/resource_module_modules!298](https://github.com/ansible-network/resource_module_models/issues/298)
 
 
 ---
@@ -1108,7 +1113,27 @@ handlers:
 
 ```
 
+[ansible-collections/ansible.netcommon!692](https://github.com/ansible-collections/ansible.netcommon/issues/692)
+
 ---
 <div class="my-header"><h1>Demo</h1></div>
 <br />
 <br />
+
+---
+class: center
+
+<div class="my-header"><img src="assets/imc-logo.png" style="float: left; width:250px"></div>
+<br />
+<br />
+<br />
+<br />
+
+# Questions?
+
+<br />
+<br />
+<br />
+<br />
+CHI-NOG 12, May 2025<br />
+[www.github.com/bewing/chinog-12](https://www.github.com/bewing/chinog-12/)
