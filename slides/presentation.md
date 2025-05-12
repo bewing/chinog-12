@@ -200,22 +200,22 @@ no ntp server {{ h }}
 
 ```terminal
 $ ansible-playbook playbooks/take-two/take-two.yml -i inventory.yml --limit clab-chinog-iol
+
+PLAY [all] *********************************************************************
+
 TASK [Parse NTP config] ********************************************************
 <span style="color:green;">ok: [clab-chinog-iol]</span>
 
 TASK [Debug] *******************************************************************
-<span style="color:green;">ok: [clab-chinog-iol] => {</span>
-<span style="color:green;">    "msg": [</span>
-<span style="color:green;">        "4.3.2.1",</span>
-<span style="color:green;">        "1.2.3.4"</span>
-<span style="color:green;">    ]</span>
-<span style="color:green;">}</span>
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    msg: []</span>
 
 TASK [Set NTP servers] *********************************************************
-<span style="color:green;">ok: [clab-chinog-iol]</span>
+<span style="color:yellow;">changed: [clab-chinog-iol]</span>
 
 PLAY RECAP *********************************************************************
-<span style="color:green;">clab-chinog-iol</span>            : <span style="color:green;">ok=3   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+<span style="color:yellow;">clab-chinog-iol</span>            : <span style="color:green;">ok=3   </span> <span style="color:yellow;">changed=1   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
 ```
 
 --
@@ -233,14 +233,13 @@ PLAY RECAP *********************************************************************
 * .biggish[Different OSes]?
 
 ```terminal
-TASK [Set NTP servers] ****************************************************************************
-fatal: [clab-chinog-ceos]: FAILED! => {"changed": false, "msg": "Connection type
-ansible.netcommon.httpapi is not valid for this module"}
-ok: [clab-chinog-iol]
+TASK [Set NTP servers] *********************************************************
+<span style="color:red;">fatal: [clab-chinog-ceos]: FAILED! => {"changed": false, "msg": "Connection type ansible.netcommon.httpapi is not valid for this module"}</span>
+<span style="color:green;">ok: [clab-chinog-iol]</span>
 
-PLAY RECAP ****************************************************************************************
-clab-chinog-ceos           : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
-clab-chinog-iol            : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *********************************************************************
+<span style="color:red;">clab-chinog-ceos</span>           : <span style="color:green;">ok=2   </span> changed=0    unreachable=0    <span style="color:red;">failed=1   </span> skipped=0    rescued=0    ignored=0
+<span style="color:green;">clab-chinog-iol</span>            : <span style="color:green;">ok=3   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 --
@@ -401,40 +400,39 @@ class: middle
 ```terminal
 $ ansible-playbook playbooks/ios-ntp/ios-ntp.yml -i inventory.yml -l clab-chinog-iol
 
-PLAY [all] *******************************************************************
+PLAY [all] *********************************************************************
 
-TASK [Configure NTP] *********************************************************
-changed: [clab-chinog-iol]
+TASK [Configure NTP] ***********************************************************
+<span style="color:yellow;">changed: [clab-chinog-iol]</span>
 
-TASK [ansible.builtin.debug] *************************************************
-ok: [clab-chinog-iol] =>
-    return_value:
-        after:
-            authenticate: true
-            authentication_keys:
-            -   algorithm: md5
-                encryption: 7
-                id: 2
-                key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
-            servers:
-            -   key_id: 2
-                prefer: true
-                server: 1.2.3.4
-                version: 2
-            -   key_id: 2
-                server: 4.3.2.1
-                version: 2
-        before: {}
-        changed: true
-        commands:
-        - ntp authenticate
-        - ntp authentication-key 2 md5 ******** 22
-        - ntp server 1.2.3.4 key 2 prefer version 2
-        - ntp server 4.3.2.1 key 2 version 2
-        failed: false
+TASK [ansible.builtin.debug] ***************************************************
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    mod_out:</span>
+<span style="color:green;">        after:</span>
+<span style="color:green;">            authentication_keys:</span>
+<span style="color:green;">            -   algorithm: md5</span>
+<span style="color:green;">                encryption: 7</span>
+<span style="color:green;">                id: 2</span>
+<span style="color:green;">                key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER</span>
+<span style="color:green;">            servers:</span>
+<span style="color:green;">            -   key_id: 2</span>
+<span style="color:green;">                prefer: true</span>
+<span style="color:green;">                server: 1.2.3.4</span>
+<span style="color:green;">                version: 2</span>
+<span style="color:green;">            -   key_id: 2</span>
+<span style="color:green;">                server: 4.3.2.1</span>
+<span style="color:green;">                version: 2</span>
+<span style="color:green;">        before: {}</span>
+<span style="color:green;">        changed: true</span>
+<span style="color:green;">        commands:</span>
+<span style="color:green;">        - ntp authentication-key 2 md5 ******** 7</span>
+<span style="color:green;">        - ntp server 1.2.3.4 key 2 prefer version 2</span>
+<span style="color:green;">        - ntp server 4.3.2.1 key 2 version 2</span>
+<span style="color:green;">        failed: false</span>
 
-PLAY RECAP *******************************************************************
-clab-chinog-iol            : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *********************************************************************
+<span style="color:yellow;">clab-chinog-iol</span>            : <span style="color:green;">ok=2   </span> <span style="color:yellow;">changed=1   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
 ```
 
 ---
@@ -444,35 +442,33 @@ clab-chinog-iol            : ok=2    changed=1    unreachable=0    failed=0    s
 ```terminal
 $ ansible-playbook playbooks/ios-ntp/ios-ntp.yml -i inventory.yml -l clab-chinog-iol
 
-PLAY [all] *******************************************************************
+PLAY [all] *********************************************************************
 
-TASK [Configure NTP] *********************************************************
-ok: [clab-chinog-iol]
+TASK [Configure NTP] ***********************************************************
+<span style="color:green;">ok: [clab-chinog-iol]</span>
 
-TASK [ansible.builtin.debug] *************************************************
-ok: [clab-chinog-iol] =>
-    return_value:
-        before:
-            authenticate: true
-            authentication_keys:
-            -   algorithm: md5
-                encryption: 7
-                id: 2
-                key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
-            servers:
-            -   key_id: 2
-                prefer: true
-                server: 1.2.3.4
-                version: 2
-            -   key_id: 2
-                server: 4.3.2.1
-                version: 2
-        changed: false
-        commands: []
-        failed: false
+TASK [ansible.builtin.debug] ***************************************************
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    mod_out:</span>
+<span style="color:green;">        before:</span>
+<span style="color:green;">            authentication_keys:</span>
+<span style="color:green;">            -   algorithm: md5</span>
+<span style="color:green;">                encryption: 7</span>
+<span style="color:green;">                id: 2</span>
+<span style="color:green;">                key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER</span>
+<span style="color:green;">            servers:</span>
+<span style="color:green;">            -   key_id: 2</span>
+<span style="color:green;">                prefer: true</span>
+<span style="color:green;">                server: 1.2.3.4</span>
+<span style="color:green;">                version: 2</span>
+<span style="color:green;">            -   key_id: 2</span>
+<span style="color:green;">                server: 4.3.2.1</span>
+<span style="color:green;">                version: 2</span>
+<span style="color:green;">        changed: false</span>
 
-PLAY RECAP *******************************************************************
-clab-chinog-iol            : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *********************************************************************
+<span style="color:green;">clab-chinog-iol</span>            : <span style="color:green;">ok=2   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
 
 ```
 
@@ -660,28 +656,28 @@ class: inverse
 
 ```terminal
 $ ansible-playbook playbooks/gather/gather.yml -i inventory.yml -l clab-chinog-iol
-TASK [Gather NTP config] *****************************************************
-ok: [clab-chinog-iol]
+TASK [Gather NTP config] *******************************************************
+<span style="color:green;">ok: [clab-chinog-iol]</span>
 
-TASK [ansible.builtin.debug] *************************************************
-ok: [clab-chinog-iol] =>
-    return_value:
-        changed: false
-        failed: false
-        gathered:
-            authenticate: true
-            authentication_keys:
-            -   algorithm: md5
-                encryption: 7
-                id: 2
-                key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
-            servers:
-            -   key_id: 2
-                prefer: true
-                server: 1.2.3.4
-                version: 2
-PLAY RECAP *******************************************************************
-clab-chinog-iol: ok=2 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
+TASK [ansible.builtin.debug] ***************************************************
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    output:</span>
+<span style="color:green;">        changed: false</span>
+<span style="color:green;">        failed: false</span>
+<span style="color:green;">        gathered:</span>
+<span style="color:green;">            authentication_keys:</span>
+<span style="color:green;">            -   algorithm: md5</span>
+<span style="color:green;">                encryption: 7</span>
+<span style="color:green;">                id: 2</span>
+<span style="color:green;">                key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER</span>
+<span style="color:green;">            servers:</span>
+<span style="color:green;">            -   key_id: 2</span>
+<span style="color:green;">                prefer: true</span>
+<span style="color:green;">                server: 1.2.3.4</span>
+<span style="color:green;">                version: 2</span>
+<span style="color:green;">            -   key_id: 2</span>
+<span style="color:green;">                server: 4.3.2.1</span>
+<span style="color:green;">                version: 2</span>
 ```
 ]
 .col-1[
@@ -709,14 +705,16 @@ Inverts `gathered`, takes your `argspec.config`/.strong[want] and turns it into 
 **NB**: Does *NOT* connect to device / collect config
 
 ```terminal
-    return_value:
-        changed: false
-        failed: false
-        rendered:
-        - ntp authenticate
-        - ntp authentication-key 2 md5 ******** 7
-        - ntp server 1.2.3.4 key 2 prefer version 2
-        - ntp server 4.3.2.1 key 2 version 2
+TASK [ansible.builtin.debug] ***************************************************
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    output:</span>
+<span style="color:green;">        changed: false</span>
+<span style="color:green;">        failed: false</span>
+<span style="color:green;">        rendered:</span>
+<span style="color:green;">        - ntp authenticate</span>
+<span style="color:green;">        - ntp authentication-key 2 md5 ******** 7</span>
+<span style="color:green;">        - ntp server 1.2.3.4 key 2 prefer version 2</span>
+<span style="color:green;">        - ntp server 4.3.2.1 key 2 version 2</span>
 ```
 ]
 .col-1[
@@ -805,38 +803,40 @@ class: inverse
 ```terminal
 $ ansible-playbook playbooks/facts/facts.yml -i inventory.yml -l clab-chinog-iol
 
-PLAY [all] *******************************************************************
+PLAY [all] *********************************************************************
 
-TASK [cisco.ios.ios_facts] ***************************************************
-ok: [clab-chinog-iol]
+TASK [cisco.ios.ios_facts] *****************************************************
+<span style="color:green;">ok: [clab-chinog-iol]</span>
 
-TASK [ansible.builtin.debug] *************************************************
-ok: [clab-chinog-iol] =>
-    ansible_facts.keys():
-    - network_resources
-    - net_gather_network_resources
-    - net_gather_subset
-    - net_system
-    - net_image
-    - net_version
-    - net_hostname
-    - net_api
-    - net_python_version
-    - net_iostype
-    - net_operatingmode
-    - net_serialnum
-    - net_all_ipv4_addresses
-    - net_all_ipv6_addresses
-    - net_neighbors
-    - net_interfaces
+TASK [ansible.builtin.debug] ***************************************************
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    ansible_facts.keys():</span>
+<span style="color:green;">    - network_resources</span>
+<span style="color:green;">    - net_gather_network_resources</span>
+<span style="color:green;">    - net_gather_subset</span>
+<span style="color:green;">    - net_all_ipv4_addresses</span>
+<span style="color:green;">    - net_all_ipv6_addresses</span>
+<span style="color:green;">    - net_neighbors</span>
+<span style="color:green;">    - net_interfaces</span>
+<span style="color:green;">    - net_system</span>
+<span style="color:green;">    - net_image</span>
+<span style="color:green;">    - net_version</span>
+<span style="color:green;">    - net_hostname</span>
+<span style="color:green;">    - net_api</span>
+<span style="color:green;">    - net_python_version</span>
+<span style="color:green;">    - net_iostype</span>
+<span style="color:green;">    - net_operatingmode</span>
+<span style="color:green;">    - net_serialnum</span>
 
-TASK [ansible.builtin.debug] *************************************************
-ok: [clab-chinog-iol] =>
-    ansible_facts.network_resources.keys():
-    - ntp_global
+TASK [ansible.builtin.debug] ***************************************************
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    ansible_facts.network_resources.keys():</span>
+<span style="color:green;">    - ntp_global</span>
 
-PLAY RECAP *******************************************************************
-clab-chinog-iol            : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *********************************************************************
+<span style="color:green;">clab-chinog-iol</span>            : <span style="color:green;">ok=3   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
 ```
 
 ---
@@ -889,13 +889,13 @@ ERROR! 'gather_network_resources' is not a valid attribute for a Play
 ```
 
 ```terminal
-TASK [ansible.builtin.debug] *************************************************
-ok: [clab-chinog-iol] =>
-    ansible_facts:
-        net_all_ipv4_addresses:
-        - 172.20.20.3
-        net_all_ipv6_addresses:
-        - 3FFF:172:20:20::3
+TASK [ansible.builtin.debug] ***************************************************
+<span style="color:green;">ok: [clab-chinog-iol] => </span>
+<span style="color:green;">    ansible_facts:</span>
+<span style="color:green;">        net_all_ipv4_addresses:</span>
+<span style="color:green;">        - 172.20.20.3</span>
+<span style="color:green;">        net_all_ipv6_addresses:</span>
+<span style="color:green;">        - 3FFF:172:20:20::3</span>
 ```
 
 ---
@@ -908,14 +908,13 @@ class: inverse
 
 
 ```terminal
-TASK [Set NTP servers] ****************************************************************************
-fatal: [clab-chinog-ceos]: FAILED! => {"changed": false, "msg": "Connection type
-ansible.netcommon.httpapi is not valid for this module"}
-ok: [clab-chinog-iol]
+TASK [Set NTP servers] *********************************************************
+<span style="color:red;">fatal: [clab-chinog-ceos]: FAILED! => {"changed": false, "msg": "Connection type ansible.netcommon.httpapi is not valid for this module"}</span>
+<span style="color:green;">ok: [clab-chinog-iol]</span>
 
-PLAY RECAP ****************************************************************************************
-clab-chinog-ceos           : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
-clab-chinog-iol            : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *********************************************************************
+<span style="color:red;">clab-chinog-ceos</span>           : <span style="color:green;">ok=2   </span> changed=0    unreachable=0    <span style="color:red;">failed=1   </span> skipped=0    rescued=0    ignored=0
+<span style="color:green;">clab-chinog-iol</span>            : <span style="color:green;">ok=3   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 ---
@@ -959,35 +958,35 @@ clab-chinog-iol            : ok=3    changed=0    unreachable=0    failed=0    s
 ```terminal
 $ ansible-playbook playbooks/agnostic-ntp/agnostic-ntp.yml -i inventory.yml
 
-PLAY [all] *******************************************************************
+PLAY [all] *********************************************************************
 
-TASK [Configure NTP] *********************************************************
-changed: [clab-chinog-ceos]
-ok: [clab-chinog-iol]
+TASK [Configure NTP] ***********************************************************
+<span style="color:yellow;">changed: [clab-chinog-ceos]</span>
+<span style="color:green;">ok: [clab-chinog-iol]</span>
 
-TASK [ansible.builtin.debug] *************************************************
-ok: [clab-chinog-ceos] =>
-    mod_out:
-        after:
-            authentication_keys:
-            -   algorithm: md5
-                encryption: 7
-                id: 2
-                key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER
-            servers:
-            -   key_id: 2
-                prefer: true
-                server: 1.2.3.4
-                version: 2
-            -   key_id: 2
-                server: 4.3.2.1
-                version: 2
-        ansible_connection: ansible.netcommon.httpapi
-        ansible_network_os: arista.eos.eos
+TASK [ansible.builtin.debug] ***************************************************
+<span style="color:green;">ok: [clab-chinog-ceos] => </span>
+<span style="color:green;">    mod_out:</span>
+<span style="color:green;">        after:</span>
+<span style="color:green;">            authentication_keys:</span>
+<span style="color:green;">            -   algorithm: md5</span>
+<span style="color:green;">                encryption: 7</span>
+<span style="color:green;">                id: 2</span>
+<span style="color:green;">                key: VALUE_SPECIFIED_IN_NO_LOG_PARAMETER</span>
+<span style="color:green;">            servers:</span>
+<span style="color:green;">            -   key_id: 2</span>
+<span style="color:green;">                prefer: true</span>
+<span style="color:green;">                server: 1.2.3.4</span>
+<span style="color:green;">                version: 2</span>
+<span style="color:green;">            -   key_id: 2</span>
+<span style="color:green;">                server: 4.3.2.1</span>
+<span style="color:green;">                version: 2</span>
+<span style="color:green;">        ansible_connection: ansible.netcommon.httpapi</span>
+<span style="color:green;">        ansible_network_os: arista.eos.eos</span>
 <snip>
-PLAY RECAP *******************************************************************
-clab-chinog-ceos           : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-clab-chinog-iol            : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *********************************************************************
+<span style="color:yellow;">clab-chinog-ceos</span>           : <span style="color:green;">ok=2   </span> <span style="color:yellow;">changed=1   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+<span style="color:green;">clab-chinog-iol</span>            : <span style="color:green;">ok=2   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 ---
 <div class="my-header"><h1>Interoperability</h1></div>
