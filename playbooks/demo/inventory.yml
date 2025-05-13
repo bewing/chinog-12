@@ -62,8 +62,6 @@ network:
           neighbors:
           - neighbor_address: "10.0.0.1"
             remote_as: "65001"
-
-
     clab-chinog-iol:
       ansible_network_os: cisco.ios.ios
       ansible_connection: ansible.netcommon.network_cli
@@ -109,6 +107,7 @@ network:
               address: "192.0.2.1"
             default:
               ipv4_unicast: true
+            log_neighbor_changes: true
           redistribute:
           - connected:
               set: true
