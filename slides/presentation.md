@@ -307,7 +307,7 @@ route-map {{ route_map }} {{ term['action'] }} {{ index }}
 <br />
 <br />
 
-.big[.underline[.red[Ansible, Jinja, FSM, etc are Domain Specific Languages]]]
+.big[.underline[.red[Ansible, Jinja2, FSM, etc are Domain Specific Languages]]]
 
 --
 
@@ -357,6 +357,8 @@ class: middle
 * Provide the networking framework
 
 * Handles device fact collection (natively!) and config *section* management
+
+* Supports check-mode execution
 
 ]
 
@@ -476,13 +478,13 @@ PLAY RECAP *********************************************************************
 <div class="my-header"><h1>So what's actually going on</h1></div>
 <br />
 <br />
+<br />
 
 .biggish[
 Ansible Network Modules contain:
 * An *argspec* covering the model of the config (usually the **want** part)
 * A *facts* module that handles populating the **have** argspec from the device
 * A *config* module that can compare want/have and generate a list of commands
-* For CLI devices, an *rm_templates* module that handles parsing and assists with configuration generation
 ]
 
 ---
