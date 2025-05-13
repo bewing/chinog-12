@@ -9,6 +9,9 @@ network:
       snmp_server: overridden
       logging_global: overridden
       lldp_global: overridden
+      interfaces: merged
+      l3_interfaces: merged
+      bgp_global: overridden
   hosts:
     clab-chinog-ceos:
       ansible_network_os: arista.eos.eos
@@ -39,6 +42,28 @@ network:
         logging_global:
           hosts:
           - name: 1.2.3.4
+        interfaces:
+        - name: Ethernet1
+          description: clab-chinog-iol
+          enabled: true
+          mode: layer3
+        l3_interfaces:
+        - name: Loopback0
+          ipv4:
+          - address: 192.0.2.0/32
+        - name: Ethernet1
+          ipv4:
+          - address: 10.0.0.0/31
+        bgp_global:
+          as_number: "65000"
+          router_id: "192.0.2.0"
+          redistribute:
+          - protocol: connected
+          neighbors:
+          - neighbor_address: "10.0.0.1"
+            remote_as: "65001"
+
+
     clab-chinog-iol:
       ansible_network_os: cisco.ios.ios
       ansible_connection: ansible.netcommon.network_cli
@@ -66,5 +91,29 @@ network:
         logging_global:
           hosts:
           - host: 1.2.3.4
+        interfaces:
+        - name: Ethernet0/1
+          description: clab-chinog-ceos
+          enabled: true
+        l3_interfaces:
+        - name: Loopback0
+          ipv4:
+          - address: 192.0.2.1/32
+        - name: Ethernet0/1
+          ipv4:
+          - address: 10.0.0.1/31
+        bgp_global:
+          as_number: "65001"
+          bgp:
+            router_id:
+              address: "192.0.2.1"
+            default:
+              ipv4_unicast: true
+          redistribute:
+          - connected:
+              set: true
+          neighbor:
+          - neighbor_address: "10.0.0.0"
+            remote_as: "65000"
         lldp_global:
           enabled: true

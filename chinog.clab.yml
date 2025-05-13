@@ -9,5 +9,4 @@ topology:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.01
   links:
-  - endpoints: ["ceos:eth1", "ceos:eth2"]
-  - endpoints: ["iol:Ethernet0/1", "iol:Ethernet0/2"]
+  - endpoints: ["ceos:eth1", "iol:Ethernet0/1"]
