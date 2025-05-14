@@ -1039,7 +1039,7 @@ Arguments passed to the module.
 
 .image-70[![placeholder](assets/jackie-chan-why.webp)]
 <br />
-[ansible-network/resource_module_modules!298](https://github.com/ansible-network/resource_module_models/issues/298)
+[ansible-network/resource_module_modules#298](https://github.com/ansible-network/resource_module_models/issues/298)
 
 
 ---
@@ -1124,7 +1124,7 @@ handlers:
 
 ```
 
-[ansible-collections/ansible.netcommon!692](https://github.com/ansible-collections/ansible.netcommon/issues/692)
+[ansible-collections/ansible.netcommon#692](https://github.com/ansible-collections/ansible.netcommon/issues/692)
 
 ---
 <div class="my-header"><h1>Demo</h1></div>
