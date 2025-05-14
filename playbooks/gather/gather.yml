@@ -1,9 +1,0 @@
-- hosts: all
-  gather_facts: false
-  tasks:
-  - name: Gather NTP config
-    cisco.ios.ntp_global:
-      state: gathered
-    register: output
-  - ansible.builtin.debug:
-      var:  output

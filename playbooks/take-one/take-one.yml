@@ -1,9 +1,0 @@
-- hosts: all
-  gather_facts: false
-  tasks:
-  - name: Set NTP servers
-    ios_command:
-      commands:
-      - configure terminal
-      - ntp server 1.2.3.4
-      - ntp server 4.3.2.1
