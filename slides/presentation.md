@@ -913,7 +913,10 @@ class: inverse
 
 ```terminal
 TASK [Set NTP servers] *********************************************************
-<span style="color:red;">fatal: [clab-chinog-ceos]: FAILED! => {"changed": false, "msg": "Connection type ansible.netcommon.httpapi is not valid for this module"}</span>
+TASK [Set NTP servers] *********************************************************
+<span style="color:red;">fatal: [clab-chinog-ceos]: FAILED! =></span>
+<span style="color:red;">    changed: false</span>
+<span style="color:red;">    msg: Connection type ansible.netcommon.httpapi is not valid for this module</span>
 <span style="color:green;">ok: [clab-chinog-iol]</span>
 
 PLAY RECAP *********************************************************************
